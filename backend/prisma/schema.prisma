@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Environment {
+  DEV
+  STAGING
+  PROD
+}
+
+model FeatureFlag {
+  id          String      @id @default(cuid())
+  key         String      @unique
+  description String
+  enabled     Boolean     @default(false)
+  rollout     Int         @default(0)
+  environment Environment @default(DEV)
+  createdBy   String
+  updatedBy   String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  auditLogs   AuditLog[]
+}
+
+model AuditLog {
+  id            String      @id @default(cuid())
+  flagId         String
+  action         String
+  actor          String
+  previousState  Json?
+  newState       Json?
+  createdAt      DateTime    @default(now())
+  environment    Environment
+  featureFlag    FeatureFlag @relation(fields: [flagId], references: [id], onDelete: Cascade)
+
+  @@index([flagId, createdAt])
+}
