@@ -38,7 +38,8 @@ Projeto de portfolio que simula um sistema de gestao de feature flags usado em p
 No diretorio raiz:
 
 ```bash
-docker compose -f infra/docker-compose.yml up -d
+copy infra/.env.example infra/.env
+docker compose --env-file infra/.env -f infra/docker-compose.yml up -d
 ```
 
 ### 2. Configurar backend
@@ -46,6 +47,7 @@ docker compose -f infra/docker-compose.yml up -d
 ```bash
 cd backend
 copy .env.example .env
+## Edite o arquivo backend/.env e substitua <SENHA_DO_POSTGRES>
 npm install
 npm run prisma:generate
 npm run prisma:migrate -- --name init
