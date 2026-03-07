@@ -1,10 +1,10 @@
-# Sistema de Feature Flags (nivel empresa grande)
+# Sistema de Feature Flags
 
-Projeto de portfolio que simula um sistema de gestao de feature flags usado em produtos de grande escala.
+Projeto que simula um sistema de gestao de feature flags usado em produtos de grande escala.
 
 ## O que o sistema demonstra
 
-- Ativacao e desativacao de funcionalidades sem novo deploy.
+- Ativação e desativação de funcionalidades sem novo deploy.
 - Rollout percentual deterministico por usuario.
 - Controle por ambiente (`DEV`, `STAGING`, `PROD`).
 - Auditoria completa de mudancas para rastreabilidade.
@@ -84,7 +84,7 @@ VITE_API_BASE_URL=http://localhost:3333/api
 4. Verificar auditoria para rastrear quem mudou o que.
 5. Em caso de incidente, desativar instantaneamente pelo dashboard.
 
-## Ideias de evolucao para impressionar recrutadores
+## Ideias de evolução
 
 - Segmentacao por pais/plano/dispositivo.
 - Regras por data e horario.
