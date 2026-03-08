@@ -124,9 +124,11 @@ function App() {
       if (selectedFlag?.id === flag.id) {
         await loadHistory(flag.id);
       }
-    } catch {
-      setFeedback("Nao foi possivel atualizar a flag.");
-    }
+    } catch (error: any) {
+        const apiMessage = error?.response?.data?.error;
+        const errMsg = apiMessage ?? error?.message ?? "Nao foi possivel atualizar a flag.";
+        setFeedback(errMsg);
+      }
   }
 
   async function handleSelectFlag(flag: FeatureFlag) {

@@ -30,6 +30,25 @@ services:
       timeout: 5s
       retries: 5
 
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.fastapi
+    container_name: flags_backend
+    depends_on:
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/feature_flags
+      - REDIS_URL=redis://redis:6379/0
+      - PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend:/app:cached
+
 volumes:
   postgres_data:
   redis_data:
