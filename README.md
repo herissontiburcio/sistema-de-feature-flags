@@ -58,3 +58,19 @@ Próximos passos
 
 Se quiser, eu posso ajustar o backend para `FastAPI` ou `NestJS` conforme sua preferência.
 
+Contribuição e segurança
+
+- Este repositório inclui um arquivo de configuração para `pre-commit` que previne
+	commits contendo chaves privadas, credenciais AWS e arquivos muito grandes.
+
+Para habilitar localmente, rode:
+
+```bash
+python -m pip install --user pre-commit
+pre-commit install
+# (opcional) checar todo o repositório agora:
+pre-commit run --all-files
+```
+
+Isso ajuda a evitar vazamento de segredos em commits futuros.
+
