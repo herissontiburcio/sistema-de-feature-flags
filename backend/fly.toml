@@ -1,0 +1,14 @@
+# Backend fly config (deploy with --app <APP_NAME> or set secret FLY_APP_BACKEND)
+
+app = "sistema-de-feature-flags-backend"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[services]]
+  internal_port = 3333
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
